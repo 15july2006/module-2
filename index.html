@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlashLearn Ultimate</title>
+<style>
+html{scroll-behavior:smooth;}
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    text-align:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+}
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 30px;
+    background:rgba(0,0,0,0.4);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+.nav-links{
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+.home{
+    padding:60px 20px;
+}
+#kidsHome{background:linear-gradient(135deg,#0fe09b,#96e9d5);}
+#teensHome{background:linear-gradient(135deg,#6bcBef,#a0e9ff);}
+#adultsHome{background:linear-gradient(135deg,#ff8fab,#ffc2d1);}
+.section{
+    min-height:100vh;
+    padding:60px 20px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.kids{ background:url('kids.jpg') no-repeat; }
+.teens{ background:url('teens.jpg') no-repeat; }
+.adults{ background:url('adults.jpg') no-repeat; }
+.kids,
+.teens,
+.adults{
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+.kids::before,
+.teens::before,
+.adults::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.55);
+    z-index:0;
+}
+.section *{
+    position:relative;
+    z-index:1;
+}
+.container{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+}
+.flashcard{
+    width:230px;
+    height:160px;
+    perspective:1000px;
+}
+.card{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:0.8s;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+.flashcard:hover .card{
+    transform:rotateY(180deg);
+}
+.front,.back{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:bold;
+    backface-visibility:hidden;
+}
+.front{
+    background:linear-gradient(135deg,#e896d4,#d68bc3);
+    color:#333;
+}
+.back{
+    background:linear-gradient(135deg,#7a8ee8,#a06bd6);
+    color:white;
+    transform:rotateY(180deg);
+}
+.flashcard:hover{
+    transform:scale(1.08);
+}
+#options{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+#options button{
+    padding:15px 25px;
+    margin:10px;
+    font-size:18px;
+    border-radius:12px;
+    border:none;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+    color:rgb(0, 0, 0);
+    font-weight:bold;
+    transition:0.3s;
+}
+#options button:hover{
+    transform:scale(1.1);
+    background:linear-gradient(135deg,#a18cd1,#fbc2eb);
+}
+.quiz button{
+    padding:12px 20px;
+    font-size:16px;
+    border-radius:10px;
+    background:#7794c6;
+    color:white;
+}
+.quiz button:hover{
+    background:rgb(36, 178, 174);
+    transform:scale(1.05);
+}
+.info{
+    width:80%;
+    margin:10px auto;
+    background:rgba(73, 231, 113, 0.6);
+    padding:25px;
+    border-radius:15px;
+}
+footer{
+    padding:15px;
+    background:rgba(0,0,0,0.6);
+}
+</style>
+</head>
+<body>
+<nav class="navbar">
+<div><b>FlashLearn</b></div>
+<ul class="nav-links">
+<li><a href="#kidsHome">Kids</a></li>
+<li><a href="#teensHome">Teens</a></li>
+<li><a href="#adultsHome">Adults</a></li>
+<li><a href="#quiz">Quiz</a></li>
+</ul>
+</nav>
+<div id="kidsHome" class="home">
+<h1>🎈 Kids Learning World 🎈</h1>
+<p>Fun and colorful learning with simple words!</p>
+</div>
+<div class="section kids">
+<h2>👶 Kids Zone 🧸</h2>
+<div class="container">
+<div class="flashcard" onclick="speak('Dog')"><div class="card"><div class="front">🐶 Dog</div><div class="back">कुत्ता</div></div></div>
+<div class="flashcard" onclick="speak('Apple')"><div class="card"><div class="front">🍎 Apple</div><div class="back">सेब</div></div></div>
+<div class="flashcard" onclick="speak('Sun')"><div class="card"><div class="front">🌞 Sun</div><div class="back">सूरज</div></div></div>
+<div class="flashcard" onclick="speak('Car')"><div class="card"><div class="front">🚗 Car</div><div class="back">गाड़ी</div></div></div>
+</div>
+</div>
+<div id="teensHome" class="home">
+<h1>🔥 Teens Learning Zone</h1>
+</div>
+<div class="section teens">
+<h2>🧑 Teens Zone 🎧</h2>
+<div class="container">
+<div class="flashcard" onclick="speak('Stay Strong')"><div class="card"><div class="front">💪 Stay Strong</div><div class="back">मजबूत रहो</div></div></div>
+<div class="flashcard" onclick="speak('Keep Learning')"><div class="card"><div class="front">📚 Keep Learning</div><div class="back">सीखते रहो</div></div></div>
+<div class="flashcard" onclick="speak('Stay Motivated')"><div class="card"><div class="front">🔥 Stay Motivated</div><div class="back">प्रेरित रहो</div></div></div>
+<div class="flashcard" onclick="speak('Keep Smiling')"><div class="card"><div class="front">😊 Keep Smiling</div><div class="back">मुस्कुराते रहो</div></div></div>
+</div>
+</div>
+<div id="adultsHome" class="home">
+<h1>🎯 Adults Learning Hub</h1>
+</div>
+<div class="section adults">
+<h2>👨 Adults Zone 💼</h2>
+<div class="container">
+<div class="flashcard" onclick="speak('Success')"><div class="card"><div class="front">🎯 Success</div><div class="back">सफलता</div></div></div>
+<div class="flashcard" onclick="speak('Knowledge')"><div class="card"><div class="front">🧠 Knowledge</div><div class="back">ज्ञान</div></div></div>
+<div class="flashcard" onclick="speak('Work Hard')"><div class="card"><div class="front">💼 Work Hard</div><div class="back">कड़ी मेहनत करो</div></div></div>
+<div class="flashcard" onclick="speak('Confidence')"><div class="card"><div class="front">✨ Confidence</div><div class="back">आत्मविश्वास</div></div></div>
+</div>
+</div>
+<div id="quiz" class="section quiz">
+<h2>📝 Quiz</h2>
+<p id="question"></p>
+<div id="options"></div>
+<p id="score"></p>
+<button onclick="next()">Next</button>
+</div>
+<div class="info">
+<h2>📚 About Flashcards</h2>
+<p>Flashcards improve memory, vocabulary, and quick revision skills.</p>
+<p>They are useful for all age groups and make learning interactive.</p>
+<p>They help in faster understanding and better retention.</p>
+</div>
+<footer>© 2026 FlashLearn</footer>
+<script>
+function speak(text){
+    let s=new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(s);
+}
+
+let q=[
+{ques:"Apple means?",opt:["सेब","Dog"],ans:"सेब"},
+{ques:"Keep Smiling means?",opt:["मुस्कुराते रहो","Keep Motivated"],ans:"मुस्कुराते रहो"}
+];
+
+let i=0,score=0;
+
+function load(){
+document.getElementById("question").innerText=q[i].ques;
+let btn="";
+q[i].opt.forEach(o=>{
+btn+=`<button onclick="check('${o}')">${o}</button>`;
+});
+document.getElementById("options").innerHTML=btn;
+}
+function check(a){
+if(a===q[i].ans){score++;alert("Correct");}
+else{alert("Wrong");}
+}
+function next(){
+i++;
+if(i<q.length){load();}
+else{
+document.getElementById("question").innerText="Finished!";
+document.getElementById("score").innerText="Score:"+score;
+document.getElementById("options").innerHTML="";
+}
+}
+load();
+</script>
+</body>
+</html>
